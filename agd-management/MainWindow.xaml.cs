@@ -27,9 +27,9 @@ namespace agd_management
 
         private void CheckDeviceConnection(object sender, RoutedEventArgs e)
         {
-            if (select_device.Text == "Odkurzacz")
+            if (select_device.Text == "Suszarka")
             {
-                device_img.Source = new BitmapImage(new Uri("img/odkurzacz.jpg", UriKind.RelativeOrAbsolute));
+                device_img.Source = new BitmapImage(new Uri("img/suszarka.jpg", UriKind.RelativeOrAbsolute));
                 device_conn_message.Content = "Device connected";
                 device_conn_message.Foreground = Brushes.Green;
 
@@ -54,7 +54,7 @@ namespace agd_management
             device_settings.Children.Clear();
             string[] washing_machine_sett = ["Bawełna", "Syntetyki", "Delikatne"];
 
-            string[] vaacum_sett = ["Odkurzanie na sucho", "Odkurzanie na mokro", "Tryb cichy"];
+            string[] automatic_dryer_sett = ["Obroty bębna w dwóch kierunkach", "Redukcja zagnieceń", "Ważenie ubrań"];
 
             if (!string.IsNullOrEmpty(selected_device) && 
                 selected_device == "Pralka")
@@ -74,13 +74,13 @@ namespace agd_management
 
             } 
             else if (!string.IsNullOrEmpty(selected_device) &&
-                selected_device == "Odkurzacz")
+                selected_device == "Suszarka")
             {
-                for (int i = 0; i < vaacum_sett.Length; i++)
+                for (int i = 0; i < automatic_dryer_sett.Length; i++)
                 {
                     var settings_radio = new RadioButton
                     {
-                        Content = vaacum_sett[i],
+                        Content = automatic_dryer_sett[i],
                         GroupName = "settings",
                         Margin = new Thickness(0, 0, 0, 10),
                     };
