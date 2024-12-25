@@ -5,92 +5,98 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:agd_management"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Zarządzanie urządzeniami AGD. Wykonał: 00000000000" 
+        Height="450"
+        Width="800"
+        SizeToContent="Height">
+
     <Grid Background="LightYellow">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-        <Label Content="Zarządzanie urządzeniami AGD"
-               Grid.Row="0"
-               Grid.ColumnSpan="2"
-               HorizontalAlignment="Center"
-               FontSize="30"
-               FontWeight="Bold"/>
+            <Label Content="Zarządzanie urządzeniami AGD"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   FontSize="30"
+                   FontWeight="Bold"/>
 
-        <Grid Grid.Row="1"
-              Grid.Column="0"
-              Margin="30">
+            <Grid Grid.Row="1"
+                  Grid.Column="0"
+                  Margin="30">
 
-            <GroupBox Padding="10">
-                <GroupBox.Header>Urządzenie</GroupBox.Header>
+                <GroupBox Padding="10">
+                    <GroupBox.Header>Urządzenie</GroupBox.Header>
 
-                <StackPanel>
-                    <Label Content="Wybierz urządzenie"
-                           HorizontalAlignment="Center"/>
-                    <ComboBox Margin="0,0,0,20"
-                              x:Name="select_device"
-                              Width="200">
-                        <ComboBoxItem Content="Suszarka"/>
-                        <ComboBoxItem Content="Pralka"/>
-                    </ComboBox>
+                    <StackPanel>
+                        <Label Content="Wybierz urządzenie"
+                               HorizontalAlignment="Center"/>
+                        <ComboBox Margin="0,0,0,20"
+                                  x:Name="select_device"
+                                  Width="200">
+                            <ComboBoxItem Content="Odkurzacz"/>
+                            <ComboBoxItem Content="Pralka"/>
+                        </ComboBox>
 
-                    <Button Content="Sprawdz dostępność"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Width="150"
-                            Click="CheckDeviceConnection"
-                            Margin="0,0,0,10"/>
+                        <Button Content="Sprawdz dostępność"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Width="150"
+                                Click="CheckDeviceConnection"
+                                Margin="0,0,0,10"/> 
 
-                    <Label x:Name="device_conn_message"
-                           HorizontalAlignment="Center"
-                           Margin="0,0,0,10"/>
-                    
-                    <Image x:Name="device_img"
-                           Width="100"/>
-                    
-                </StackPanel>
-            </GroupBox>
-        </Grid>
+                        <Label x:Name="device_conn_message"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,10"/>
 
+                        <Image x:Name="device_img"
+                               Width="100"/>
 
-        <Grid Grid.Row="1"
-              Grid.Column="1"
-              Margin="30">
-
-            <GroupBox Padding="10">
-                <GroupBox.Header>Ustawienia</GroupBox.Header>
-
-                <StackPanel>
-                    <Label Content="Godzina startu"
-                           HorizontalAlignment="Left"/>
-                    <TextBox x:Name="start_hour"
-                             Width="200"
-                             HorizontalAlignment="Left"
-                             Margin="0,0,0,10"/>
-
-                    <StackPanel x:Name="device_settings">
-                        
                     </StackPanel>
-                </StackPanel>
-            </GroupBox>
+                </GroupBox>
+            </Grid>
+
+
+            <Grid Grid.Row="1"
+          Grid.Column="1"
+          Margin="30">
+
+                <GroupBox Padding="10">
+                    <GroupBox.Header>Ustawienia</GroupBox.Header>
+
+                    <StackPanel>
+                        <Label Content="Godzina startu"
+                       HorizontalAlignment="Left"/>
+                        <TextBox x:Name="start_hour"
+                         Width="200"
+                         HorizontalAlignment="Left"
+                         Margin="0,0,0,10"/>
+
+                        <StackPanel x:Name="device_settings">
+
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+
+
+            <Button Content="Zatwierdz"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Width="200"
+            Click="DisplaySettings"/>
+
         </Grid>
-
-
-        <Button Content="Zatwierdz"
-                Grid.Row="2"
-                Grid.ColumnSpan="2"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                Width="200"
-                Click="DisplaySettings"/>
-
     </Grid>
 </Window>

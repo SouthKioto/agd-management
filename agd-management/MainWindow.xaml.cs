@@ -1,5 +1,6 @@
 ﻿using System.Reflection.PortableExecutable;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -27,26 +28,34 @@ namespace agd_management
 
         private void CheckDeviceConnection(object sender, RoutedEventArgs e)
         {
-            if (select_device.Text == "Suszarka")
+            if (string.IsNullOrEmpty(select_device.Text))
             {
-                device_img.Source = new BitmapImage(new Uri("img/suszarka.jpg", UriKind.RelativeOrAbsolute));
-                device_conn_message.Content = "Device connected";
-                device_conn_message.Foreground = Brushes.Green;
-
-                selected_device = select_device.Text;
-
-                AddSettingsOptions();
-            }
-            if (select_device.Text == "Pralka")
+                MessageBox.Show("Proszę wybrać urządzenie", "Błąd", MessageBoxButton.OK);
+            } 
+            else
             {
-                device_img.Source = new BitmapImage(new Uri("img/pralka.jpg", UriKind.RelativeOrAbsolute));
-                device_conn_message.Content = "Device connected";
-                device_conn_message.Foreground = Brushes.Green;
-                
-                selected_device = select_device.Text;
+                if (select_device.Text == "Odkurzacz")
+                {
+                    device_img.Source = new BitmapImage(new Uri("img/odkurzacz.jpg", UriKind.RelativeOrAbsolute));
+                    device_conn_message.Content = "Device connected";
+                    device_conn_message.Foreground = Brushes.Green;
 
-                AddSettingsOptions();
+                    selected_device = select_device.Text;
+
+                    AddSettingsOptions();
+                }
+                if (select_device.Text == "Pralka")
+                {
+                    device_img.Source = new BitmapImage(new Uri("img/pralka.jpg", UriKind.RelativeOrAbsolute));
+                    device_conn_message.Content = "Device connected";
+                    device_conn_message.Foreground = Brushes.Green;
+
+                    selected_device = select_device.Text;
+
+                    AddSettingsOptions();
+                }
             }
+            
         }
 
         private void AddSettingsOptions()
@@ -54,7 +63,7 @@ namespace agd_management
             device_settings.Children.Clear();
             string[] washing_machine_sett = ["Bawełna", "Syntetyki", "Delikatne"];
 
-            string[] automatic_dryer_sett = ["Obroty bębna w dwóch kierunkach", "Redukcja zagnieceń", "Ważenie ubrań"];
+            string[] vaacum_sett = ["Odkurzanie na sucho", "Odkurzanie na mokro", "Tryb cichy"];
 
             if (!string.IsNullOrEmpty(selected_device) && 
                 selected_device == "Pralka")
@@ -74,13 +83,13 @@ namespace agd_management
 
             } 
             else if (!string.IsNullOrEmpty(selected_device) &&
-                selected_device == "Suszarka")
+                selected_device == "Odkurzacz")
             {
-                for (int i = 0; i < automatic_dryer_sett.Length; i++)
+                for (int i = 0; i < vaacum_sett.Length; i++)
                 {
                     var settings_radio = new RadioButton
                     {
-                        Content = automatic_dryer_sett[i],
+                        Content = vaacum_sett[i],
                         GroupName = "settings",
                         Margin = new Thickness(0, 0, 0, 10),
                     };
@@ -105,11 +114,20 @@ namespace agd_management
         {
             string startHour = start_hour.Text;
 
-            string mess = $"Wybrane urządzenie: {selected_device} \n" +
-                $"Ustawienia: {selected_radio_content}\n" +
-                $"Godzina rozpoczęcia {startHour}";
+            if(string.IsNullOrEmpty(startHour) || 
+               string.IsNullOrEmpty(selected_device) ||
+               string.IsNullOrEmpty(selected_radio_content))
+            {
+                MessageBox.Show("Wprowadź dane", "Błąd", MessageBoxButton.OK);
+            }
+            else
+            {
+                string mess = $"Wybrane urządzenie: {selected_device} \n" +
+                              $"Ustawienia: {selected_radio_content}\n" +
+                              $"Godzina rozpoczęcia: {startHour}";
 
-            MessageBox.Show(mess, "Alert", MessageBoxButton.OK);
+                MessageBox.Show(mess, "Alert", MessageBoxButton.OK);
+            }
         }
     }
 }

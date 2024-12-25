@@ -10,15 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="img\odkurzacz.jpg" />
     <None Remove="img\pralka.jpg" />
-    <None Remove="img\suszarka.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="img\odkurzacz.jpg" />
     <Resource Include="img\pralka.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\suszarka.jpg" />
   </ItemGroup>
 
   <ItemGroup>
